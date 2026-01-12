@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdullah Shamail - Computer Engineering PhD Candidate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --accent: #0ea5e9;
+            --bg: #0f172a;
+            --bg-light: #1e293b;
+            --bg-card: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+        
+        .hero .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .hero .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .hero .contact-info a:hover {
+            color: #38bdf8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section {
+            margin-bottom: 70px;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 35px;
+            color: var(--text);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 2px;
+        }
+        
+        .highlight-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+        
+        .card-subtitle {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .card-date {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        
+        .card-content {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(37, 99, 235, 0.2);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .publications-list {
+            counter-reset: pub-counter;
+        }
+        
+        .publication {
+            background: var(--bg-card);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            position: relative;
+            padding-left: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .publication::before {
+            counter-increment: pub-counter;
+            content: counter(pub-counter);
+            position: absolute;
+            left: 20px;
+            top: 25px;
+            background: var(--primary);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+        
+        .publication-title {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .publication-meta {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        
+        .award-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .card-header {
+                flex-direction: column;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Abdullah Shamail</h1>
+        <div class="subtitle">PhD Candidate in Computer Engineering | Spatio-Temporal Data Management</div>
+        <div class="contact-info">
+            <a href="mailto:ashamail@iastate.edu">ashamail@iastate.edu</a>
+            <a href="tel:+15157089021">+1 515-708-9021</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Work Experience -->
+        <section class="section">
+            <h2 class="section-title">Work Experience</h2>
+            
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Engineering Data Science Intern</div>
+                        <div class="card-subtitle">Altair Engineering, Troy, MI</div>
+                    </div>
+                    <div class="card-date">May 2025 - Aug 2025</div>
+                </div>
+                <div class="card-content">
+                    Improved Altair's PhysicsAI predictive models by developing and optimizing GNN, Transformer, and RNN-based architectures for large-scale spatio-temporal physical simulation data, achieving a 10× reduction in MAE and enabling higher-fidelity predictions. Built and deployed scalable ML pipelines using PyTorch and TensorFlow with GPU-accelerated inference.
+                </div>
+            </div>
+
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Software Developer</div>
+                        <div class="card-subtitle">Taar Consulting, Lahore, Pakistan</div>
+                    </div>
+                    <div class="card-date">May 2018 - Jun 2018</div>
+                </div>
+                <div class="card-content">
+                    Designed and implemented a Customer Feedback Plugin for Retail Pro Prism, leveraging its APIs. The plugin was seamlessly integrated into existing transaction systems, capturing feedback from over 1,000 daily transactions to provide actionable insights for enhanced customer experience.
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Highlights -->
+        <section class="section">
+            <h2 class="section-title">Research Highlights</h2>
+            
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">SDMC Framework</div>
+                        <div class="card-subtitle">Graduate Research Assistant - ISU</div>
+                    </div>
+                    <div class="card-date">2022 - Present</div>
+                </div>
+                <div class="card-content">
+                    Designed the Semantic Diversity in Moving Clusters (SDMC) framework, implementing algorithms that achieved 17 to 65 times speedups using indexing, embedding-based similarity measures, and spatial partitioning, advancing diversity-aware clustering in dynamic environments.
+                </div>
+            </div>
+
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Bond-Aware Relaxed Moving Clusters (BARMC)</div>
+                        <div class="card-subtitle">ACM SIGSPATIAL 2024</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    Developed the BARMC algorithm integrating spatial proximity and domain-specific semantic rules, optimizing detection of key molecular interactions like Hydrogen Bonds. Enhanced traditional clustering techniques with ~1.7x reduction in computation time.
+                </div>
+            </div>
+
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">MD Data Compression</div>
+                        <div class="card-subtitle">ADBIS 2022 <span class="award-badge">Best Paper</span></div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    Developed domain-specific trajectory compression algorithm for molecular dynamics simulations, achieving 80% reduction in storage requirements and 3x speedup in data retrieval. Received Best Paper Award at ADBIS 2022.
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Doctor of Philosophy, Computer Engineering</div>
+                        <div class="card-subtitle">Iowa State University, Ames, IA</div>
+                    </div>
+                    <div class="card-date">Expected Aug 2026</div>
+                </div>
+                <div class="card-content">
+                    Major Professors: Goce Trajcevski, Ashfaq Khokhar<br>
+                    Focus: Spatio-Temporal Data Management
+                </div>
+            </div>
+
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Master of Science, Computer Engineering</div>
+                        <div class="card-subtitle">Iowa State University, Ames, IA</div>
+                    </div>
+                    <div class="card-date">Dec 2024</div>
+                </div>
+                <div class="card-content">
+                    Major Professor: Goce Trajcevski<br>
+                    Specialization: Software Systems
+                </div>
+            </div>
+
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Bachelor of Science, Computer Science</div>
+                        <div class="card-subtitle">Lahore University of Management Sciences (LUMS), Pakistan</div>
+                    </div>
+                    <div class="card-date">Jun 2020</div>
+                </div>
+                <div class="card-content">
+                    Major Professor: Muhammad Fareed Zaffar<br>
+                    BS Thesis: Authorship Attribution and Obfuscation
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications -->
+        <section class="section">
+            <h2 class="section-title">Selected Publications</h2>
+            
+            <div class="publications-list">
+                <div class="publication">
+                    <div class="publication-title">
+                        Compressing generalized trajectories of molecular motion for efficient detection of chemical interactions
+                    </div>
+                    <div class="publication-meta">
+                        Information Systems, Vol. 125, 2024 | Journal Article
+                    </div>
+                </div>
+
+                <div class="publication">
+                    <div class="publication-title">
+                        Bond-Aware Moving Clusters of Atomic Trajectories with Relaxed Persistency
+                    </div>
+                    <div class="publication-meta">
+                        ACM SIGSPATIAL 2024 | Conference Proceedings
+                    </div>
+                </div>
+
+                <div class="publication">
+                    <div class="publication-title">
+                        Generalization Aware Compression of Molecular Trajectories <span class="award-badge">Best Paper</span>
+                    </div>
+                    <div class="publication-meta">
+                        ADBIS 2022, Lecture Notes in Computer Science | Conference Proceedings
+                    </div>
+                </div>
+
+                <div class="publication">
+                    <div class="publication-title">
+                        The new norm: Computer Science conferences respond to COVID-19
+                    </div>
+                    <div class="publication-meta">
+                        Scientometrics, Vol. 126, 2021 | Journal Article
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Machine Learning & AI</h3>
+                    <div>
+                        <span class="badge">TensorFlow</span>
+                        <span class="badge">PyTorch</span>
+                        <span class="badge">Keras</span>
+                        <span class="badge">Sklearn</span>
+                        <span class="badge">GNN</span>
+                        <span class="badge">Transformers</span>
+                        <span class="badge">RNN</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Big Data & Distributed Systems</h3>
+                    <div>
+                        <span class="badge">Apache Spark</span>
+                        <span class="badge">Apache Flink</span>
+                        <span class="badge">Hadoop</span>
+                        <span class="badge">Pig Latin</span>
+                        <span class="badge">SQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div>
+                        <span class="badge">Python</span>
+                        <span class="badge">C++</span>
+                        <span class="badge">Java</span>
+                        <span class="badge">JavaScript/React</span>
+                        <span class="badge">GoLang</span>
+                        <span class="badge">MATLAB</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Data Analysis</h3>
+                    <div>
+                        <span class="badge">Pandas</span>
+                        <span class="badge">NumPy</span>
+                        <span class="badge">SQL Server</span>
+                        <span class="badge">MySQL</span>
+                        <span class="badge">Trajectory Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teaching Experience -->
+        <section class="section">
+            <h2 class="section-title">Teaching Experience</h2>
+            
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Teaching Assistant</div>
+                        <div class="card-subtitle">Iowa State University</div>
+                    </div>
+                    <div class="card-date">Jan 2021 - Present</div>
+                </div>
+                <div class="card-content">
+                    Instructed 150+ students across multiple courses including Introduction to Computer Engineering, Software Tools for Large-Scale Data Analysis, Digital Logic Circuits, and Software Analysis & Verification. Developed curriculum materials, held office hours, and provided hands-on guidance in algorithmic problem solving, distributed systems, and hardware description languages.
+                </div>
+            </div>
+
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Project Mentor - Senior Capstone</div>
+                        <div class="card-subtitle">Iowa State University</div>
+                    </div>
+                    <div class="card-date">Jan 2022 - May 2023</div>
+                </div>
+                <div class="card-content">
+                    Mentored 100+ senior students through full Software Development Life Cycle. Successfully mentored a student group in refining their project for academic publication, leading to a co-authored demo paper at ACM SIGSPATIAL 2024.
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards -->
+        <section class="section">
+            <h2 class="section-title">Honors & Awards</h2>
+            
+            <div class="highlight-card">
+                <div class="card-content">
+                    <strong>NSF Student Travel Grant</strong> - Competitive selection for conference attendance and professional development
+                </div>
+            </div>
+
+            <div class="highlight-card">
+                <div class="card-content">
+                    <strong>Best Paper Award</strong> - ADBIS 2022 for "Generalization Aware Compression of Molecular Trajectories"
+                </div>
+            </div>
+
+            <div class="highlight-card">
+                <div class="card-content">
+                    <strong>Preparing Future Faculty Associate</strong> - Iowa State University, 2025
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership -->
+        <section class="section">
+            <h2 class="section-title">Leadership & Service</h2>
+            
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">President - Pakistan Student Association</div>
+                        <div class="card-subtitle">Iowa State University</div>
+                    </div>
+                    <div class="card-date">May 2023 - May 2024</div>
+                </div>
+                <div class="card-content">
+                    Led community engagement initiatives attracting 80+ attendees. Designed social media campaign that raised $20,000 for flood relief efforts supporting 15 million affected individuals in Pakistan. Organized International Culture and Food Fest for 300+ attendees.
+                </div>
+            </div>
+
+            <div class="highlight-card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Vice President - Index: Design and Innovation Society</div>
+                        <div class="card-subtitle">LUMS</div>
+                    </div>
+                    <div class="card-date">May 2019 - May 2020</div>
+                </div>
+                <div class="card-content">
+                    Initiated first-ever Design Innovation Event and mentored 50 students. Successfully organized UX Pakistan, an international design conference attracting 500 global attendees annually.
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
