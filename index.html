@@ -37,6 +37,17 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 25px;
+            display: block;
+            border: 4px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+        
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
@@ -270,6 +281,7 @@
 </head>
 <body>
     <div class="hero">
+        <img src="picture.jpeg" alt="Abdullah Shamail" class="profile-image">
         <h1>Abdullah Shamail</h1>
         <div class="subtitle">PhD Candidate in Computer Engineering | Spatio-Temporal Data Management | Machine Learning/AI</div>
         <div class="contact-info">
