@@ -71,6 +71,24 @@
             color: #38bdf8;
         }
         
+        .resume-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+        }
+        
+        .resume-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -257,7 +275,9 @@
         <div class="contact-info">
             <a href="mailto:ashamail@iastate.edu">ashamail@iastate.edu</a>
             <a href="tel:+15157089021">+1 515-708-9021</a>
+            <a href="https://www.linkedin.com/in/abdullahshamail" target="_blank">LinkedIn</a>
         </div>
+        <a href="Abdullah_Shamail_Resume.pdf" class="resume-btn" download>📄 Download My Resume</a>
     </div>
 
     <div class="container">
@@ -335,7 +355,6 @@
                         <div class="card-title">SDMC Framework</div>
                         <div class="card-subtitle">Pending Submission 2026</div>
                     </div>
-                    <!-- <div class="card-date">2026</div> -->
                 </div>
                 <div class="card-content">
                     Designed the Semantic Diversity in Moving Clusters (SDMC) framework, implementing algorithms that achieved 17 to 65 times speedups using indexing, embedding-based similarity measures, and spatial partitioning, advancing diversity-aware clustering in dynamic environments.
